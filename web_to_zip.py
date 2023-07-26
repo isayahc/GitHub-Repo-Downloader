@@ -21,6 +21,7 @@ def download_webpage(url, path='webpage'):
         return None, None
 
 def zip_files(files, zip_name):
+    os.makedirs(os.path.dirname(zip_name), exist_ok=True)  # Create the output directory if it doesn't exist
     with zipfile.ZipFile(zip_name, 'w') as zipf:
         for file in files:
             zipf.write(file)
@@ -28,10 +29,12 @@ def zip_files(files, zip_name):
 def main():
     parser = argparse.ArgumentParser(description="Download and zip a webpage.")
     parser.add_argument('url', help='The URL of the webpage to download.')
+    parser.add_argument('output_dir', nargs='?', default=os.getcwd(), help='The directory to save the downloaded ZIP file.')
     args = parser.parse_args()
     file, title = download_webpage(args.url)
     if file is not None:
-        zip_files([file], f'{title}.zip')
+        zip_name = os.path.join(args.output_dir, f'{title}.zip')  # Save the file in the output directory
+        zip_files([file], zip_name)
 
 if __name__ == "__main__":
     main()
