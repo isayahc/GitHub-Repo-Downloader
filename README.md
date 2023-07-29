@@ -2,7 +2,7 @@
 
 This is a Python script for downloading a GitHub repository as a ZIP file. It uses the `requests` library to download the file, and the `argparse` library to provide a command line interface. If no filename is provided, the downloaded ZIP file is named `<repo-name>.zip`.
 
-## Installation
+## **Installation**
 
 1. Clone this repository or download the script.
 2. Install the required libraries with pip: `pip install requests`.
